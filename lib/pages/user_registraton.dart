@@ -18,7 +18,6 @@ class _UserLogInState extends State<UserLogIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isVisible = false;
   bool _isButtonDisabled = true;
-  Token? _response;
 
   void _createUserSession() async {
     // do something
