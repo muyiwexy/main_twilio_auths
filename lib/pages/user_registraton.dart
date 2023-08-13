@@ -23,7 +23,7 @@ class _UserLogInState extends State<UserLogIn> {
     // do something
   }
 
-  void _sendOtp() async {
+  void _reSendOtp() async {
     // do something
   }
 
@@ -79,7 +79,7 @@ class _UserLogInState extends State<UserLogIn> {
                     const SizedBox(),
                   if (_isVisible)
                     ReusableElevatedButton(
-                      onPressed: _isButtonDisabled ? null : _sendOtp,
+                      onPressed: _isButtonDisabled ? null : _reSendOtp,
                       child: const Text('Send OTP'),
                     )
                   else
