@@ -21,28 +21,28 @@ class _UserLogInState extends State<UserLogIn> {
   Token? _response;
 
   void _createUserSession() async {
-    //   if (_formKey.currentState!.validate()) {
-    //     _response = await AppwriteAuth().phoneLogin(_phoneController.text);
-    //     setState(() {
-    //       _isVisible = true;
-    //     });
-    //     await Future.delayed(const Duration(seconds: 5));
-    //     setState(() {
-    //       _isButtonDisabled = !_isButtonDisabled;
-    //     });
-    //   }
+    if (_formKey.currentState!.validate()) {
+      _response = await AppwriteAuth().phoneLogin(_phoneController.text);
+      setState(() {
+        _isVisible = true;
+      });
+      await Future.delayed(const Duration(seconds: 5));
+      setState(() {
+        _isButtonDisabled = !_isButtonDisabled;
+      });
+    }
   }
 
   void _reSendOtp() async {
-    // setState(() {
-    //   _isButtonDisabled = true;
-    // });
-    // await AppwriteAuth().phoneLogin(_phoneController.text);
-    // Future.delayed(const Duration(seconds: 5), () {
-    //   setState(() {
-    //     _isButtonDisabled = !_isButtonDisabled;
-    //   });
-    // });
+    setState(() {
+      _isButtonDisabled = true;
+    });
+    await AppwriteAuth().phoneLogin(_phoneController.text);
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        _isButtonDisabled = !_isButtonDisabled;
+      });
+    });
   }
 
   void _updateUserSession() async {
