@@ -21,40 +21,41 @@ class _UserLogInState extends State<UserLogIn> {
   Token? _response;
 
   void _createUserSession() async {
-    //   if (_formKey.currentState!.validate()) {
-    //     _response = await AppwriteAuth().phoneLogin(_phoneController.text);
-    //     setState(() {
-    //       _isVisible = true;
-    //     });
-    //     await Future.delayed(const Duration(seconds: 5));
-    //     setState(() {
-    //       _isButtonDisabled = !_isButtonDisabled;
-    //     });
-    //   }
+    if (_formKey.currentState!.validate()) {
+      _response = await AppwriteAuth().phoneLogin(_phoneController.text);
+      setState(() {
+        _isVisible = true;
+      });
+      await Future.delayed(const Duration(seconds: 5));
+      setState(() {
+        _isButtonDisabled = !_isButtonDisabled;
+      });
+    }
   }
 
   void _sendOtp() async {
-    // setState(() {
-    //   _isButtonDisabled = true;
-    // });
-    // await AppwriteAuth().phoneLogin(_phoneController.text);
-    // Future.delayed(const Duration(seconds: 5), () {
-    //   setState(() {
-    //     _isButtonDisabled = !_isButtonDisabled;
-    //   });
-    // });
+    setState(() {
+      _isButtonDisabled = true;
+    });
+    await AppwriteAuth().phoneLogin(_phoneController.text);
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        _isButtonDisabled = !_isButtonDisabled;
+      });
+    });
   }
 
   void _updateUserSession() async {
-    // if (_formKey.currentState!.validate()) {
-    //   await AppwriteAuth().enter(_response!.userId, _otpTokenController.text);
-    //   if (!mounted) return;
-    //   await Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //     builder: (context) => const HomePage(),
-    //   ));
-    //   _phoneController.clear();
-    //   _otpTokenController.clear();
-    // }
+    if (_formKey.currentState!.validate()) {
+      await AppwriteAuth().verifyPhoneOTP(
+          userID: _response!.userId, otp: _otpTokenController.text);
+      if (!mounted) return;
+      await Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const HomePage(),
+      ));
+      _phoneController.clear();
+      _otpTokenController.clear();
+    }
   }
 
   String? _validatePhoneNumber(String? value) {
